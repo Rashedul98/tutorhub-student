@@ -6,6 +6,7 @@ import 'package:tutorhub/utilities/colors.dart';
 import 'package:tutorhub/utilities/functions/navigation.dart';
 
 import '../../models/teachers/response.dart';
+import 'map.dart';
 
 class TeacherListScreen extends ConsumerWidget {
   const TeacherListScreen({super.key});
@@ -39,8 +40,45 @@ class TeacherListScreen extends ConsumerWidget {
           Teachers teacher = teachers[index];
           return ProCard(
             disableShadow: true,
-            child: ProText(
-              text: "${teacher.firstName} ${teacher.lastName}",
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: ProText(
+                        text: "${teacher.firstName} ${teacher.lastName}",
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    ProTapper(
+                      child: const Row(
+                        children: [
+                          ProText(
+                            text: "Map",
+                          ),
+                          ProGap(x: 4),
+                          Icon(Icons.arrow_forward),
+                        ],
+                      ),
+                      onTap: () {
+                        push(
+                          screen: TeachersLocationMap(
+                            lat: teacher.location!.latitude!,
+                            long: teacher.location!.longitude!,
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
+                const ProGap(y: 8),
+                ProText(
+                  text: "${teacher.phone} | ${teacher.email}",
+                  fontSize: 12,
+                ),
+              ],
             ),
           );
         },
