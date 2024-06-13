@@ -4,6 +4,7 @@ class SigninResponseModel {
   String? firstName;
   String? lastName;
   String? contactInfo;
+  String? email;
   String? school;
   String? college;
   String? address;
@@ -15,6 +16,7 @@ class SigninResponseModel {
       this.firstName,
       this.lastName,
       this.contactInfo,
+      this.email,
       this.school,
       this.college,
       this.address,
@@ -26,6 +28,7 @@ class SigninResponseModel {
     firstName = json['first_name'];
     lastName = json['last_name'];
     contactInfo = json['contact_info'];
+    email = json['email'];
     school = json['school'];
     college = json['college'];
     address = json['address'];

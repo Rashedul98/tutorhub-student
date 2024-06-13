@@ -8,7 +8,7 @@ rootMiddlewear() async {
   final bool? isLoggedIn =
       await locator<SharedPreferenceService>().getBool(key: "loggedIn");
   if (isLoggedIn == true) {
-    pushReplaced(screen: HomeScreen());
+    pushReplaced(screen: const HomeScreen());
   } else {
     pushReplaced(screen: const SigninScreen());
   }

@@ -24,8 +24,25 @@ class SigninController extends StateNotifier<SigninState> {
       SigninResponseModel? data = SigninResponseModel.fromJson(response?.data);
 
       if (data.success == true) {
-        locator<SharedPreferenceService>()
-            .setBool(key: "loggedIn", value: true);
+        locator<SharedPreferenceService>().setBool(
+          key: "loggedIn",
+          value: true,
+        );
+
+        locator<SharedPreferenceService>().setString(
+          key: "userName",
+          value: "${data.firstName} ${data.lastName}",
+        );
+
+        locator<SharedPreferenceService>().setString(
+          key: "userEmail",
+          value: data.email ?? "",
+        );
+
+        locator<SharedPreferenceService>().setString(
+          key: "userPhone",
+          value: data.contactInfo ?? "",
+        );
 
         state = state.copyWith(
           data: data,

@@ -7,15 +7,37 @@ import 'package:tutorhub/utilities/colors.dart';
 import 'package:tutorhub/utilities/enums.dart';
 import 'package:tutorhub/utilities/functions/get_position.dart';
 import 'package:tutorhub/utilities/functions/navigation.dart';
+import 'package:tutorhub/utilities/shared_preference.dart';
+import 'package:tutorhub/utilities/singleton.dart';
 import 'package:tutorhub/views/home/teacher_list_loader.dart';
+import 'package:tutorhub/views/signin/signin.dart';
 import 'package:tutorhub/views/teachers/providers.dart';
 
-class HomeScreen extends ConsumerWidget {
-  final TextEditingController controller = TextEditingController();
-  HomeScreen({super.key});
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  final TextEditingController controller = TextEditingController();
+  String? userName;
+
+  getUserData() async {
+    userName =
+        await locator<SharedPreferenceService>().getString(key: "userName");
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getUserData();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final reqModel = ref.watch(teacherListRequestModelProvider);
 
     return GestureDetector(
@@ -23,12 +45,40 @@ class HomeScreen extends ConsumerWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: ProjectColors.primary,
+          title: const ProText(
+            text: "TutorHub",
+            fontSize: 18,
+            color: Colors.white,
+          ),
+          actions: [
+            ProTapper(
+              padding: const EdgeInsets.all(16),
+              child: const Icon(
+                Icons.logout,
+                color: ProjectColors.white,
+              ),
+              onTap: () {
+                locator<SharedPreferenceService>().clear().then((value) {
+                  pushAndRemoveAll(screen: const SigninScreen());
+                });
+              },
+            )
+          ],
+        ),
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                ProText(
+                  text: "Welcome $userName",
+                  fontSize: 14,
+                ),
+                const ProGap(y: 16),
                 ProCard(
                   disableShadow: true,
                   width: double.infinity,

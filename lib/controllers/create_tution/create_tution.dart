@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutorhub/controllers/create_tution/state.dart';
 import 'package:tutorhub/models/teachers/create_tution_response.dart';
-import 'package:tutorhub/views/signin/providers.dart';
+import 'package:tutorhub/views/teachers/providers.dart';
 
 import '../../utilities/enums.dart';
 import '../../utilities/functions/http_request.dart';
@@ -16,7 +16,7 @@ class CreateTutionController extends StateNotifier<CreateTutionState> {
       final Response? response = await httpRequest(
         httpRequestType: HttpRequestType.post,
         path: "/tutions",
-        payload: ref.read(signinRequestModelProvider).toJson(),
+        payload: ref.read(createTutionRequestModelProvider).toJson(),
       );
 
       CreateTutionResponseModel? data =
