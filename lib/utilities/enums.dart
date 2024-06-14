@@ -25,3 +25,16 @@ enum ScopeType {
 
   const ScopeType(this.value, this.name);
 }
+
+enum TutionStatus {
+  requested("requested", "Requested"),
+  pendingPayment("pending-payment", "Pending Payment"),
+  enrolled("enrolled", "Enrolled"),
+  rejected("rejected", "Rejected"),
+  completed("completed", "Completed");
+
+  final String value;
+  final String name;
+
+  const TutionStatus(this.value, this.name);
+}
