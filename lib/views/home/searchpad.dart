@@ -40,6 +40,7 @@ class _HomeSearchpadState extends ConsumerState<HomeSearchpad> {
   Widget build(BuildContext context) {
     final reqModel = ref.watch(teacherListRequestModelProvider);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ProText(
           text: "Welcome $userName",

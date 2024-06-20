@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pro_widgets/pro_widgets.dart';
 import 'package:tutorhub/utilities/colors.dart';
+import 'package:tutorhub/utilities/functions/navigation.dart';
+import 'package:tutorhub/views/home/loaders/update_tution_loader.dart';
+import 'package:tutorhub/views/home/providers.dart';
 
 import '../../controllers/get_tution/get_tution.dart';
 import '../../utilities/enums.dart';
@@ -115,27 +118,60 @@ class HomeTutionList extends StatelessWidget {
                               ? Column(
                                   children: [
                                     const ProGap(y: 16),
-                                    ProTapper(
-                                      padding: const EdgeInsets.all(0),
-                                      child: const Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          ProText(
-                                            text: "Pay",
-                                            color: ProjectColors.green500,
-                                            fontSize: 14,
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: ProButtonBasic(
+                                            height: 32,
+                                            text: "Cancel",
+                                            backgroundColor:
+                                                ProjectColors.red500,
+                                            width: double.infinity,
+                                            onTap: () {
+                                              ref
+                                                  .read(
+                                                      updateTutionModelProvider
+                                                          .notifier)
+                                                  .update(
+                                                    (state) => state.copyWith(
+                                                      status: TutionStatus
+                                                          .canceled.value,
+                                                      id: tution.id,
+                                                    ),
+                                                  );
+                                              loader(
+                                                  screen:
+                                                      const UpdateTutionLoader());
+                                            },
                                           ),
-                                          ProGap(x: 4),
-                                          Icon(
-                                            Icons.arrow_forward,
-                                            color: ProjectColors.green500,
-                                            size: 18,
-                                          ),
-                                        ],
-                                      ),
-                                      onTap: () {},
-                                    ),
+                                        ),
+                                        const ProGap(x: 16),
+                                        Expanded(
+                                          child: ProButtonBasic(
+                                              height: 32,
+                                              text: "Pay Now",
+                                              backgroundColor:
+                                                  ProjectColors.green500,
+                                              width: double.infinity,
+                                              onTap: () {
+                                                ref
+                                                    .read(
+                                                        updateTutionModelProvider
+                                                            .notifier)
+                                                    .update(
+                                                      (state) => state.copyWith(
+                                                        status: TutionStatus
+                                                            .enrolled.value,
+                                                        id: tution.id,
+                                                      ),
+                                                    );
+                                                loader(
+                                                    screen:
+                                                        const UpdateTutionLoader());
+                                              }),
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 )
                               : const SizedBox.shrink()

@@ -31,6 +31,7 @@ enum TutionStatus {
   pendingPayment("pending-payment", "Pending Payment"),
   enrolled("enrolled", "Enrolled"),
   rejected("rejected", "Rejected"),
+  canceled("canceled", "Canceled"),
   completed("completed", "Completed");
 
   final String value;

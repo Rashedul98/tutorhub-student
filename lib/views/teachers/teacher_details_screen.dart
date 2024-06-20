@@ -11,8 +11,8 @@ import '../../utilities/colors.dart';
 import '../../utilities/functions/navigation.dart';
 
 class TeacherDetailsScreen extends ConsumerWidget {
-  final Teachers teacher;
   const TeacherDetailsScreen({super.key, required this.teacher});
+  final Teachers teacher;
 
   @override
   Widget build(BuildContext context, ref) {

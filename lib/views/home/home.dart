@@ -41,12 +41,11 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         backgroundColor: Colors.white,
-        body: const SafeArea(
+        body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+            padding: const EdgeInsets.all(16),
+            child: ListView(
+              children: const [
                 HomeSearchpad(),
                 ProGap(y: 16),
                 HomeTutionList(),

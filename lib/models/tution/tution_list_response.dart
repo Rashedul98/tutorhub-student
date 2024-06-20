@@ -25,7 +25,7 @@ class TutionListResponseModel {
 }
 
 class TutionList {
-  String? sId;
+  String? id;
   String? teacherName;
   String? teacherEmail;
   String? studentName;
@@ -36,7 +36,7 @@ class TutionList {
   int? iV;
 
   TutionList(
-      {this.sId,
+      {this.id,
       this.teacherName,
       this.teacherEmail,
       this.studentName,
@@ -47,7 +47,7 @@ class TutionList {
       this.iV});
 
   TutionList.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
+    id = json['_id'];
     teacherName = json['teacher_name'];
     teacherEmail = json['teacher_email'];
     studentName = json['student_name'];
@@ -60,7 +60,7 @@ class TutionList {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = sId;
+    data['_id'] = id;
     data['teacher_name'] = teacherName;
     data['teacher_email'] = teacherEmail;
     data['student_name'] = studentName;
