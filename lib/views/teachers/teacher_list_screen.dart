@@ -8,6 +8,7 @@ import 'package:tutorhub/views/teachers/teacher_details_screen.dart';
 
 import '../../models/teachers/response.dart';
 import 'map.dart';
+import 'providers.dart';
 
 class TeacherListScreen extends ConsumerWidget {
   const TeacherListScreen({super.key});
@@ -41,6 +42,7 @@ class TeacherListScreen extends ConsumerWidget {
           Teachers teacher = teachers[index];
           return ProTapper(
             onTap: () {
+              ref.invalidate(createTutionRequestModelProvider);
               push(screen: TeacherDetailsScreen(teacher: teacher));
             },
             child: ProCard(

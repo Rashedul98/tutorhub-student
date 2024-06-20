@@ -83,20 +83,27 @@ class TeacherDetailsScreen extends ConsumerWidget {
               ),
             ),
           ),
-          ProButtonBasic(
-            onTap: () async {
-              String? studentEmail = await locator<SharedPreferenceService>()
-                  .getString(key: "userEmail");
-              ref.read(createTutionRequestModelProvider.notifier).update(
-                    (state) => state.copyWith(
-                      teacherEmail: teacher.email,
-                      studentEmail: studentEmail,
-                      status: "requested",
-                    ),
-                  );
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ProButtonBasic(
+              height: 40,
+              text: "Send Request",
+              width: double.infinity,
+              backgroundColor: ProjectColors.primary,
+              onTap: () async {
+                String? studentEmail = await locator<SharedPreferenceService>()
+                    .getString(key: "userEmail");
+                ref.read(createTutionRequestModelProvider.notifier).update(
+                      (state) => state.copyWith(
+                        teacherEmail: teacher.email,
+                        studentEmail: studentEmail,
+                        status: "requested",
+                      ),
+                    );
 
-              loader(screen: const CreateTutionLoader());
-            },
+                loader(screen: const CreateTutionLoader());
+              },
+            ),
           ),
           const ProGap(y: 16)
         ],

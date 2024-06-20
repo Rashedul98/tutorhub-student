@@ -5,6 +5,8 @@ import 'package:tutorhub/controllers/create_tution/create_tution.dart';
 import 'package:tutorhub/utilities/enums.dart';
 import 'package:tutorhub/utilities/functions/navigation.dart';
 
+import 'providers.dart';
+
 class CreateTutionLoader extends StatelessWidget {
   const CreateTutionLoader({super.key});
 
@@ -30,6 +32,7 @@ class CreateTutionLoader extends StatelessWidget {
                   pop();
                   pop();
                   pop();
+                  ref.invalidate(createTutionRequestModelProvider);
                 },
               );
             } else if (state.dataState == DataState.error) {

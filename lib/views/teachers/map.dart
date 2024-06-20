@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pro_widgets/pro_widgets.dart';
+import 'package:tutorhub/utilities/colors.dart';
 
 class TeachersLocationMap extends StatefulWidget {
   final double lat;
@@ -19,6 +21,13 @@ class TeachersLocationMapState extends State<TeachersLocationMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const ProText(
+          text: "Teachers Location",
+          fontSize: 18,
+          color: ProjectColors.primary,
+        ),
+      ),
       body: GoogleMap(
         mapType: MapType.normal,
         markers: <Marker>{

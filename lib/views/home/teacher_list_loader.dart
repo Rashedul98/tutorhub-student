@@ -4,6 +4,7 @@ import 'package:pro_widgets/pro_widgets.dart';
 import 'package:tutorhub/utilities/enums.dart';
 import 'package:tutorhub/utilities/functions/call_back.dart';
 import 'package:tutorhub/utilities/functions/navigation.dart';
+import 'package:tutorhub/views/teachers/providers.dart';
 import 'package:tutorhub/views/teachers/teacher_list_screen.dart';
 
 import '../../controllers/teacher_list/teacher_list.dart';
@@ -25,6 +26,7 @@ class TeacherListLoader extends StatelessWidget {
             } else if (state.dataState == DataState.loaded) {
               callBackFunction(() {
                 pushReplaced(screen: const TeacherListScreen());
+                ref.invalidate(teacherListRequestModelProvider);
               });
             } else if (state.dataState == DataState.empty) {
               return ProAlertClassic(

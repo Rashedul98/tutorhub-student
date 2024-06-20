@@ -183,6 +183,7 @@ class _HomeSearchpadState extends ConsumerState<HomeSearchpad> {
                           longitude: position.longitude,
                         ),
                       );
+                  controller.clear();
                   loader(screen: const TeacherListLoader());
                 },
               )
