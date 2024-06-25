@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pro_widgets/pro_widgets.dart';
+import 'package:tutorhub/utilities/colors.dart';
 import 'package:tutorhub/utilities/functions/navigation.dart';
 import 'package:tutorhub/utilities/functions/null_checker.dart';
 import 'package:tutorhub/views/signin/loader.dart';
@@ -36,6 +37,31 @@ class _SigninScreenState extends State<SigninScreen> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const IntrinsicWidth(
+                      child: Row(
+                        children: [
+                          ProText(
+                            text: "Tutor",
+                            fontSize: 24,
+                            color: ProjectColors.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          ProText(
+                            text: "Hub",
+                            fontSize: 24,
+                            color: ProjectColors.blue500,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const ProText(
+                      text: "Students",
+                      fontSize: 14,
+                      color: ProjectColors.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    const ProGap(y: 24),
                     ProTextFormField(
                       borderColor: Colors.black12,
                       borderWidth: 1,
@@ -80,6 +106,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       fontSize: 16,
                       height: 45,
                       width: double.infinity,
+                      backgroundColor: ProjectColors.primary,
                       onTap: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           loader(screen: const SigninLoader());
@@ -96,7 +123,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                         ProButtonText(
                           text: "Sign up",
-                          fontColor: Colors.blue,
+                          fontColor: Colors.red,
                           function: () {
                             pushReplaced(screen: const SignupScreen());
                           },

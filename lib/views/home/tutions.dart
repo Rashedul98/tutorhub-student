@@ -90,7 +90,12 @@ class HomeTutionList extends StatelessWidget {
                                                         TutionStatus
                                                             .rejected.value
                                                     ? TutionStatus.rejected.name
-                                                    : "Unknown",
+                                                    : tution.status ==
+                                                            TutionStatus
+                                                                .canceled.value
+                                                        ? TutionStatus
+                                                            .canceled.name
+                                                        : "Unknown",
                                   )
                                 ],
                               )
