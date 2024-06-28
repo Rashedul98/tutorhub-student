@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pro_widgets/pro_widgets.dart';
+import 'package:tutorhub/utilities/colors.dart';
 
 import 'package:tutorhub/utilities/functions/null_checker.dart';
 import 'package:tutorhub/views/signin/signin.dart';
@@ -26,6 +27,13 @@ class _SignupScreenState extends State<SignupScreen> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
+        appBar: AppBar(
+          title: const ProText(
+            text: "Signup",
+            fontSize: 18,
+            color: ProjectColors.blue500,
+          ),
+        ),
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
