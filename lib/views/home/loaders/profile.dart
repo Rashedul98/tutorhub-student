@@ -15,6 +15,7 @@ class _ProfileBottomSheetState extends State<ProfileBottomSheet> {
   String? name;
   String? email;
   String? phone;
+  String? address;
 
   getUserData() async {
     name = await locator<SharedPreferenceService>().getString(key: "userName");
@@ -22,6 +23,8 @@ class _ProfileBottomSheetState extends State<ProfileBottomSheet> {
         await locator<SharedPreferenceService>().getString(key: "userEmail");
     phone =
         await locator<SharedPreferenceService>().getString(key: "userPhone");
+    address =
+        await locator<SharedPreferenceService>().getString(key: "userAddress");
     setState(() {});
   }
 
@@ -52,6 +55,12 @@ class _ProfileBottomSheetState extends State<ProfileBottomSheet> {
           const ProGap(y: 8),
           ProText(
             text: "Phone: $phone",
+            fontSize: 16,
+            color: ProjectColors.primary,
+          ),
+          const ProGap(y: 8),
+          ProText(
+            text: "Address: $address",
             fontSize: 16,
             color: ProjectColors.primary,
           ),

@@ -37,29 +37,34 @@ class _SigninScreenState extends State<SigninScreen> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const IntrinsicWidth(
-                      child: Row(
-                        children: [
-                          ProText(
-                            text: "Tutor",
-                            fontSize: 24,
-                            color: ProjectColors.primary,
-                            fontWeight: FontWeight.bold,
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        IntrinsicWidth(
+                          child: Row(
+                            children: [
+                              ProText(
+                                text: "Tutor",
+                                fontSize: 24,
+                                color: ProjectColors.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              ProText(
+                                text: "Hub",
+                                fontSize: 24,
+                                color: ProjectColors.blue500,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ],
                           ),
-                          ProText(
-                            text: "Hub",
-                            fontSize: 24,
-                            color: ProjectColors.blue500,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const ProText(
-                      text: "Students",
-                      fontSize: 14,
-                      color: ProjectColors.primary,
-                      fontWeight: FontWeight.bold,
+                        ),
+                        ProText(
+                          text: "Students",
+                          fontSize: 14,
+                          color: ProjectColors.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
                     ),
                     const ProGap(y: 24),
                     ProTextFormField(

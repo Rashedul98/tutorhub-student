@@ -44,6 +44,11 @@ class SigninController extends StateNotifier<SigninState> {
           value: data.contactInfo ?? "",
         );
 
+        locator<SharedPreferenceService>().setString(
+          key: "userAddress",
+          value: data.address ?? "",
+        );
+
         state = state.copyWith(
           data: data,
           dataState: DataState.loaded,
