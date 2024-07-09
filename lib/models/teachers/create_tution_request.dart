@@ -1,7 +1,7 @@
 class CreateTutionRequestModel {
   String? teacherEmail;
   String? studentEmail;
-  List<String>? subjects;
+  List<Subjects>? subjects;
   int? fee;
   String? status;
 
@@ -27,7 +27,7 @@ class CreateTutionRequestModel {
   CreateTutionRequestModel copyWith({
     String? teacherEmail,
     String? studentEmail,
-    List<String>? subjects,
+    List<Subjects>? subjects,
     int? fee,
     String? status,
   }) {
@@ -38,5 +38,27 @@ class CreateTutionRequestModel {
       fee: fee ?? this.fee,
       status: status ?? this.status,
     );
+  }
+}
+
+class Subjects {
+  String? subject;
+  String? scope;
+
+  Subjects({this.subject, this.scope});
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['subject'] = subject;
+    data['scope'] = scope;
+    return data;
+  }
+
+  Subjects copyWith({
+    String? subject,
+    String? scope,
+  }) {
+    return Subjects(
+        subject: subject ?? this.subject, scope: scope ?? this.scope);
   }
 }

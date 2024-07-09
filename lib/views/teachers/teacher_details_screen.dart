@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pro_widgets/pro_widgets.dart';
+import 'package:tutorhub/models/teachers/create_tution_request.dart';
 import 'package:tutorhub/models/teachers/response.dart';
 import 'package:tutorhub/utilities/shared_preference.dart';
 import 'package:tutorhub/utilities/singleton.dart';
@@ -17,7 +18,7 @@ class TeacherDetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final reqModel = ref.watch(createTutionRequestModelProvider);
-    List<String> subjects = reqModel.subjects ?? [];
+    List<Subjects> subjects = reqModel.subjects ?? [];
     return Scaffold(
       backgroundColor: ProjectColors.background,
       appBar: AppBar(
@@ -53,19 +54,37 @@ class TeacherDetailsScreen extends ConsumerWidget {
                   teacher.expertise != null
                       ? Column(
                           children: teacher.expertise!.map((expertise) {
+                            bool isSelected = false;
+                            for (var element in subjects) {
+                              if (element.subject == expertise.subject &&
+                                  element.scope == expertise.scope) {
+                                isSelected = true;
+                                break;
+                              }
+                            }
+
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: ProRadioButton(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                checked: subjects.contains(expertise.subject),
+                                checked: isSelected,
                                 title:
                                     "${expertise.subject} (${expertise.scope})",
                                 onTap: (_) {
-                                  if (subjects.contains(expertise.subject)) {
-                                    subjects.remove(expertise.subject);
+                                  if (isSelected) {
+                                    subjects.removeWhere(
+                                      (element) {
+                                        return element.subject ==
+                                                expertise.subject &&
+                                            element.scope == expertise.scope;
+                                      },
+                                    );
                                   } else {
                                     if (expertise.subject != null) {
-                                      subjects.add(expertise.subject!);
+                                      subjects.add(Subjects(
+                                        subject: expertise.subject,
+                                        scope: expertise.scope,
+                                      ));
                                     }
                                   }
                                   ref

@@ -30,7 +30,7 @@ class TutionList {
   String? teacherEmail;
   String? studentName;
   String? studentEmail;
-  List<String>? subjects;
+  List<Subjects>? subjects;
   int? fee;
   String? status;
   int? iV;
@@ -52,7 +52,12 @@ class TutionList {
     teacherEmail = json['teacher_email'];
     studentName = json['student_name'];
     studentEmail = json['student_email'];
-    subjects = json['subjects'].cast<String>();
+    if (json['subjects'] != null) {
+      subjects = <Subjects>[];
+      json['subjects'].forEach((v) {
+        subjects!.add(Subjects.fromJson(v));
+      });
+    }
     fee = json['fee'];
     status = json['status'];
     iV = json['__v'];
@@ -70,5 +75,17 @@ class TutionList {
     data['status'] = status;
     data['__v'] = iV;
     return data;
+  }
+}
+
+class Subjects {
+  String? subject;
+  String? scope;
+
+  Subjects({this.subject, this.scope});
+
+  Subjects.fromJson(Map<String, dynamic> json) {
+    subject = json['subject'];
+    scope = json['scope'];
   }
 }
