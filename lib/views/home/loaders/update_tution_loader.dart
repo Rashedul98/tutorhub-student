@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pro_widgets/pro_widgets.dart';
+import 'package:tutorhub/views/home/providers.dart';
 
 import '../../../controllers/get_tution/get_tution.dart';
 import '../../../controllers/update_tution/update_tution.dart';
@@ -24,9 +25,13 @@ class UpdateTutionLoader extends StatelessWidget {
             if (state.dataState == DataState.initial) {
               ref.read(updateTutionProvider.notifier).update();
             } else if (state.dataState == DataState.loaded) {
+              String message = ref.read(updateTutionModelProvider).status ==
+                      TutionStatus.completed.value
+                  ? "Payment Completed"
+                  : "Tution Cancelled";
               return ProAlertClassic(
                 title: "Success!",
-                message: "Payment completed.",
+                message: message,
                 button1Text: "OK",
                 button1Function: () {
                   callBackFunction(() {
