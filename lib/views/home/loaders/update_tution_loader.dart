@@ -26,7 +26,7 @@ class UpdateTutionLoader extends StatelessWidget {
               ref.read(updateTutionProvider.notifier).update();
             } else if (state.dataState == DataState.loaded) {
               String message = ref.read(updateTutionModelProvider).status ==
-                      TutionStatus.completed.value
+                      TutionStatus.enrolled.value
                   ? "Payment Completed"
                   : "Tution Cancelled";
               return ProAlertClassic(

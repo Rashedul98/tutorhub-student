@@ -10,7 +10,7 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   await registerSingletons();
-  await locator<DioService>().create("http://192.168.68.117:3000");
+  await locator<DioService>().create("http://192.168.68.124:3000");
 
   runApp(const ProviderScope(child: MyApp()));
 }
